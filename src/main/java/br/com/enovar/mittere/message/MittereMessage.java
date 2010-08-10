@@ -4,7 +4,7 @@ public interface MittereMessage {
 	
 	MittereMessage to(String... phones);
 	
-	MittereMessage withMessage(String messa);
+	MittereMessage withMessage(String message);
 	
 	void send();
 
