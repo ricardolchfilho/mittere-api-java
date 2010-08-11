@@ -26,17 +26,17 @@ public class MittereMessageTest {
 	@Test(expected = InvalidMessageContentException.class)
 	public void shouldNotSendMittereMessageWhenHasANullContent() {
 		mittereMessage
-		.to("8588311227", "8532723429")
-		.withMessage(null)
-		.send();
+			.to("8588311227", "8532723429")
+			.withMessage(null)
+			.send();
 	}
 	
 	@Test(expected = InvalidMessageContentException.class)
 	public void shouldNotSendMittereMessageWhenHasAnEmptyContent() {
 		mittereMessage
-		.to("8588311227", "8532723429")
-		.withMessage("   ")
-		.send();
+			.to("8588311227", "8532723429")
+			.withMessage("   ")
+			.send();
 	}
 
 }
