@@ -11,12 +11,8 @@ public class MittereMessage implements MittereMessageBuilder, Message {
 
 	private String content;
 	
-	private final PhoneNumberValidator phoneNumberValidator;
+	private static PhoneNumberValidator phoneValidator = new PhoneNumberValidator();
 	
-	public MittereMessage(PhoneNumberValidator phoneNumberValidator) {
-		this.phoneNumberValidator = phoneNumberValidator;
-	}
-
 	@Override
 	public MittereMessageBuilder to(String... phones) {
 		for (int i = 0; i < phones.length; i++) {
@@ -35,6 +31,7 @@ public class MittereMessage implements MittereMessageBuilder, Message {
 	@Override
 	public void send() {
 		validatePhoneNumbers();
+		validateContent();
 	}
 	
 	@Override
@@ -43,9 +40,21 @@ public class MittereMessage implements MittereMessageBuilder, Message {
 	}
 	
 	private void validatePhoneNumbers() {
-		for (String phoneNumber : phones) {
-			phoneNumberValidator.validate(phoneNumber);
+		for (String phone : phones) {
+			if (!phoneValidator.validate(phone)) {
+				throw new InvalidPhoneNumberException(phone + " is invalid!");
+			}
 		}
 	}
 	
+	private void validateContent() {
+		if (content == null || content.trim().isEmpty()) {
+			throw new InvalidMessageContentException("Message content is required");
+		}
+	}
+
+	public static void setPhoneValidator(PhoneNumberValidator phoneValidator) {
+		MittereMessage.phoneValidator = phoneValidator;
+	}
+
 }
