@@ -1,16 +1,25 @@
 package br.com.enovar.mittere.validator;
 
-
 public final class PhoneNumberValidator {
-	
-	public void validate(String phoneNumber) throws InvalidPhoneNumberException {
+
+	private final static Integer MAX_NUMBERS = 10;
+
+	public boolean validate(String phoneNumber) {
 		if (phoneNumber == null || phoneNumber.trim().isEmpty()) {
-			throw new InvalidPhoneNumberException();
+			return false;
 		}
-		
-		if (phoneNumber.length() != 10) {
-			throw new InvalidPhoneNumberException(phoneNumber);
+
+		if (phoneNumber.length() != PhoneNumberValidator.MAX_NUMBERS) {
+			return false;
 		}
+
+		try {
+			Long.valueOf(phoneNumber);
+		} catch (NumberFormatException exception) {
+			return false;
+		}
+
+		return true;
 	}
-	
+
 }
