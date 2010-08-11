@@ -3,7 +3,6 @@ package br.com.enovar.mittere.message;
 import java.util.HashSet;
 import java.util.Set;
 
-import br.com.enovar.mittere.validator.MessageContentValidator;
 import br.com.enovar.mittere.validator.PhoneNumberValidator;
 
 public class MittereMessage implements MittereMessageBuilder, Message {
@@ -14,11 +13,8 @@ public class MittereMessage implements MittereMessageBuilder, Message {
 	
 	private final PhoneNumberValidator phoneNumberValidator;
 	
-	private final MessageContentValidator messageContentValidator;
-	
-	public MittereMessage(PhoneNumberValidator phoneNumberValidator, MessageContentValidator messageContentValidator) {
+	public MittereMessage(PhoneNumberValidator phoneNumberValidator) {
 		this.phoneNumberValidator = phoneNumberValidator;
-		this.messageContentValidator = messageContentValidator;
 	}
 
 	@Override
@@ -39,7 +35,6 @@ public class MittereMessage implements MittereMessageBuilder, Message {
 	@Override
 	public void send() {
 		validatePhoneNumbers();
-		validateContent();
 	}
 	
 	@Override
@@ -53,8 +48,4 @@ public class MittereMessage implements MittereMessageBuilder, Message {
 		}
 	}
 	
-	private void validateContent() {
-		messageContentValidator.validate(this.content);
-	}
-
 }
