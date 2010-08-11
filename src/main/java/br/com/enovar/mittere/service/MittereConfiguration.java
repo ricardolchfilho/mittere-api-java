@@ -27,7 +27,12 @@ public class MittereConfiguration {
 	
 	private static Properties loadProperties() {
 		InputStream stream = MittereConfiguration.class
-			.getResourceAsStream(File.separator + CONFIG_FILE);
+			.getResourceAsStream(CONFIG_FILE);
+		
+		if (stream == null) {
+			stream = MittereConfiguration.class
+				.getResourceAsStream(File.separator + CONFIG_FILE);
+		}
 		
 		Properties properties = new Properties();
 		
