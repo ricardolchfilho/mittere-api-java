@@ -23,7 +23,7 @@ public class ContentValidatorTest {
 		String messageToValidate = "";
 		
 		for (int i = 0; i < 1024; i++) {
-			messageToValidate += i;
+			messageToValidate = messageToValidate.concat(String.valueOf(i));
 		}
 		
 		assertFalse(validator.validate(messageToValidate));

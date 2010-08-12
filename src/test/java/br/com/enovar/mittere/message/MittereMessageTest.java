@@ -8,6 +8,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.enovar.mittere.validator.ContentValidator;
 import br.com.enovar.mittere.validator.PhoneNumberValidator;
 
 public class MittereMessageTest {
@@ -18,6 +19,7 @@ public class MittereMessageTest {
 	public void setUp() throws Exception {
 		mittereMessage = new MittereMessage();
 		MittereMessage.setPhoneValidator(new PhoneNumberValidator());
+		MittereMessage.setContentValidator(new ContentValidator());
 	}
 	
 	@Test

@@ -9,17 +9,13 @@ public final class PhoneNumberValidator {
 			return false;
 		}
 
-		if (phoneNumber.length() != PhoneNumberValidator.MAX_NUMBERS) {
-			return false;
-		}
-
 		try {
 			Long.valueOf(phoneNumber);
 		} catch (NumberFormatException exception) {
 			return false;
 		}
 
-		return true;
+		return phoneNumber.length() == PhoneNumberValidator.MAX_NUMBERS;
 	}
 
 }

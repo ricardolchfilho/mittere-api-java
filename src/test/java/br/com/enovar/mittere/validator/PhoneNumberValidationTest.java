@@ -1,6 +1,8 @@
 package br.com.enovar.mittere.validator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,7 +31,7 @@ public class PhoneNumberValidationTest {
 	}
 	
 	@Test
-	public void shouldNotValidateEmptyPhoneNumbers() {
+	public void shouldNotValidateEmptyPhoneNumber() {
 		assertFalse(validator.validate(""));
 	}
 	
