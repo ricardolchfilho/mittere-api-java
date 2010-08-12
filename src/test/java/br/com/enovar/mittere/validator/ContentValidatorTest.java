@@ -14,8 +14,14 @@ public class ContentValidatorTest {
 	}
 	
 	@Test
+	public void shouldValidateNormalMessage() {
+		assertTrue(validator.validate("Thanks for using Mittere API for Java"));
+	}
+	
+	@Test
 	public void shouldNotValidateLargeMessages() {
 		String messageToValidate = "";
+		
 		for (int i = 0; i < 1024; i++) {
 			messageToValidate += i;
 		}
